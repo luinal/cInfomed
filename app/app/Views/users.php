@@ -64,6 +64,7 @@
             </tr>
         <?php endforeach; ?>
     </table>
+    
     <?php echo $pager->links(); ?>
 </div>
 

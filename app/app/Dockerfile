@@ -24,33 +24,13 @@ RUN composer self-update --2
 
 ADD conf/apache.conf /etc/apache2/sites-available/000-default.conf
 
-# LDAP INSTALLATION
-RUN set -x \
-    && apt-get update \
-    && apt-get install -y libldap2-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-    && docker-php-ext-install ldap \
-    && apt-get purge -y --auto-remove libldap2-dev
-
-RUN a2enmod rewrite
-
-RUN printf "#!/bin/bash\nmv /codeigniter4 /var/www/html\n/usr/sbin/apache2ctl -D FOREGROUND" > /startScript.sh
-RUN chmod +x /startScript.sh
-
 #Eu preciso inicializar o appstarter do codeigniter
-#RUN composer create-project codeigniter4/appstarter codeigniter4 v4.1.8
-#RUN chmod -R 0777 /var/www/html/writable
+RUN composer create-project codeigniter4/appstarter codeigniter4 v4.1.8
+RUN chmod -R 0777 /var/www/html/
 
 #Eu preciso copiar essa parte para dentro do "app" no appstarter
 COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
-RUN apt-get clean \
-    && rm -r /var/lib/apt/lists/*
-
 EXPOSE 80
-
-VOLUME ["/var/www/html", "/var/log/apache2", "/etc/apache2"]
-
-CMD ["bash", "/startScript.sh"]
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

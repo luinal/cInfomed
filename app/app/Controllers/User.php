@@ -65,6 +65,7 @@ class User extends BaseController{
                 'users' => $this->userModel->paginate(10),
                 'pager' => $this->userModel->pager
             ]);
+           
             
         }
         //echo $this->userModel->getNumRows();
