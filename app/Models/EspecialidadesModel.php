@@ -9,7 +9,7 @@ class EspecialidadesModel extends Model
     protected $DBGroup          = 'default';
     protected $table            = 'especialidades';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
@@ -20,7 +20,7 @@ class EspecialidadesModel extends Model
     ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

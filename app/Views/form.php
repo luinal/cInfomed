@@ -18,11 +18,10 @@
             <label for="telefone_celular">Telefone Celular</label>
             <input type="text" value="<?php echo isset($user['telefone_celular']) ? $user['telefone_celular'] : '' ?>" name="telefone_celular" class="form-control telefone" maxlength="9" required>
         </div>
-
+    
         <div class="form-group">
             <label for="especialidades">Especialidades</label>
-                <select id="especialidade" name="especialidades[]" required class="form-control" multiple>
-                    <option value="" selected invalid>- Selecione pelo menos 2 opções -</option>
+                <select id="especialidade" name="especialidades[]" required class="js-example-basic-multiple" multiple placeholder="Selecione pelo menos 2 opções">
                     <option value="Alergologia">Alergologia</option>
                     <option value="Angiologia">Angiologia</option>
                     <option value="Buco Maxilo">Buco Maxilo</option>
@@ -124,5 +123,9 @@
         }
     };
     
+    //Script multi-seleção (para especialidades)
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
 
 </script>

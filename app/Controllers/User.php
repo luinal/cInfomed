@@ -22,30 +22,46 @@ class User extends BaseController{
 
         //Variável 'busca' por algum motivo é convertida para um array.
         $busca = implode(" ", $this->request->getPost());
-
+        
         echo view('templates/header', $data);
         if (!$busca) 
         {
             echo view('users', [
                 'users' => $this->userModel->orderBy('nome', 'ASC'),
+                'specs' => $this->especialidadesModel->select('nome'),
                 'users' => $this->userModel->paginate(10),
                 'pager' => $this->userModel->pager
             ]);
         } else 
         {
             echo view('users', [
-                'users' => $this->userModel->orderBy('nome', 'ASC'),
-                'users' => $this->userModel->like('nome', $busca),
-                //Tentar remover tudo antes de ->orLike
+                'users' => $this->userModel->orderBy('usuarios.nome', 'ASC'),
+                'users' => $this->userModel->like('usuarios.nome', $busca),
                 'users' => $this->userModel->orLike('crm', $busca),
                 'users' => $this->userModel->orLike('telefone_fixo', $busca),
                 'users' => $this->userModel->orLike('telefone_celular', $busca),
                 'users' => $this->userModel->orLike('cep', $busca),
-                'users' => $this->userModel->orLike('especialidades', $busca),
+                //'users' => $this->userModel->orLike('especialidades', $busca),
                 'users' => $this->userModel->orLike('rua', $busca),
                 'users' => $this->userModel->orLike('bairro', $busca),
                 'users' => $this->userModel->orLike('cidade', $busca),
                 'users' => $this->userModel->orLike('uf', $busca),
+                
+                //'specs' => $this->userModel->join('especialidades AS special', 'special.usuario_id = usuarios.id'),
+                'specs' => $this->especialidadesModel->select('especialidades.nome'),
+                'specs' => $this->especialidadesModel->from('especialidades AS special'),
+                'specs' => $this->especialidadesModel->join('usuarios', 'usuarios.id = especialidades.usuario_id'),
+                //'specs' => $this->especialidadesModel->where('usuarios.deleted_at == NULL'),
+                //'specs' => $this->especialidadesModel->get(),
+
+                //'specs' => $this->especialidadesModel->select('*'),
+                //'specs' => $this->especialidadesModel->from('especialidades AS special'),
+                
+                //'specs' => $this->especialidadesModel->find('usuarios.id'),
+                //'specs' => $this->userModel->join("especialidades", "especialidades.seletor_user = usuarios.id"),
+                //'specs' => $this->especialidadesModel->where('especialidades.seletor_user', 'usuarios.id'),
+                
+                //'users' => $this->userModel->get(),
                 'users' => $this->userModel->paginate(10),
                 'pager' => $this->userModel->pager
             ]);
@@ -85,22 +101,20 @@ class User extends BaseController{
 
         //$especialidades = $this->request->getPost('especialidades');
 
-        //echo implode(" ", $especialidades).'<br><br>';
+        //echo implode("<br><br>", $especialidades).'<br><br>';
 
         
         /*
         foreach ($this->request->getPost('especialidades') as $especs)
         {
-            echo $especs.'<br>';
-              
+            //echo $especs.'<br>';
             $this->especialidadesModel->save([
                 'seletor_user' => $this->request->getVar('id'),
                 'nome' => $especs
-            ]);
-            
-            
+            ]); 
         }
         */
+        
         $queryGlobal = $this->request->getPost([
             'id',
             'nome',
