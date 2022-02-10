@@ -1,5 +1,4 @@
 version: '2.1'
-
 services:
   cinfomed-app:
     container_name: cinfomed-app
@@ -7,27 +6,20 @@ services:
     links:
       - cinfomed-db
     ports:
-      - '80:80'
-    environment:
-      ALLOW_EMPTY_PASSWORD: 1
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cinfomed
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123456
+      - 8000:80
   cinfomed-db:
     container_name: cinfomed-db
     image: luinal/cinfomed:db
     restart: always
     environment:
-      ALLOW_EMPTY_PASSWORD: 1
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cinfomed
-      MYSQL_USER: root
+      MYSQL_USER: mysql
       MYSQL_PASSWORD: 123456
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - '9906:3306'
+      - "9906:3306"
   phpmyadmin:
     container_name: cinfomed-phpmyadmin
     image: phpmyadmin 
@@ -35,12 +27,7 @@ services:
       - '8023:80'
     restart: always
     environment:
-      ALLOW_EMPTY_PASSWORD: 1
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cinfomed
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123456
-      PMA_HOST: cinfomed-db
+        PMA_HOST: cinfomed-db
     links:
       - cinfomed-db
 

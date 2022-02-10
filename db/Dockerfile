@@ -4,7 +4,7 @@ MAINTAINER ...
 
 ENV  MYSQL_ROOT_PASSWORD: root
 ENV  MYSQL_DATABASE: cinfomed
-ENV  MYSQL_USER: root
+ENV  MYSQL_USER: mysql
 ENV  MYSQL_PASSWORD: 123456
 
 COPY initdb.sql /docker-entrypoint-initdb.d/
