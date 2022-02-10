@@ -35,12 +35,13 @@ RUN set -x \
 
 RUN a2enmod rewrite
 
-#RUN printf "#!/bin/bash\nmv /codeigniter4 /var/www/html\n/usr/sbin/apache2ctl -D FOREGROUND" > /startScript.sh
-#RUN chmod +x /startScript.sh
+RUN printf "#!/bin/bash\nmv /codeigniter4 /var/www/html\n/usr/sbin/apache2ctl -D FOREGROUND" > /startScript.sh
+RUN chmod +x /startScript.sh
 
 #Eu preciso inicializar o appstarter do codeigniter
 #RUN composer create-project codeigniter4/appstarter codeigniter4 v4.1.8
-#RUN chmod -R 0777 /var/www/html/writable
+RUN chmod -R 0777 /var/www/html/codeigniter4/writable
+
 
 #Eu preciso copiar essa parte para dentro do "app" no appstarter
 COPY . /var/www/html/
