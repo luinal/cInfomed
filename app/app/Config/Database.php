@@ -33,8 +33,8 @@ class Database extends Config
     public $default = [
         'DSN'      => '',
         'hostname' => 'cinfomed-db',
-        'username' => 'root',
-        'password' => 'root',
+        'username' => 'mysql',
+        'password' => '123456',
         'database' => 'cinfomed',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
