@@ -7,6 +7,8 @@ services:
       - cinfomed-db
     ports:
       - 8000:80
+    volumes:
+      - app_data:/var/www/html/
   cinfomed-db:
     container_name: cinfomed-db
     image: luinal/cinfomed:db
@@ -33,3 +35,4 @@ services:
 
 volumes:
   mysql_data:
+  app_data:
