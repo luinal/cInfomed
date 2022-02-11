@@ -38,6 +38,13 @@ RUN a2enmod rewrite
 RUN apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
+RUN cd /var/www/html
+
+RUN composer create-project codeigniter4/appstarter codeigniter4 v4.1.8
+
+RUN rm -rf ./vendor
+RUN mv ./codeigniter4/vendor/ /var/www/html/
+
 #Eu preciso copiar essa parte para dentro do "app" no appstarter
 COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
