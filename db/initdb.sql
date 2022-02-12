@@ -7,7 +7,7 @@ CREATE TABLE especialidades (
   deleted_at timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
   id int(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   nome varchar(120) NOT NULL,
   crm varchar(7) NOT NULL,
