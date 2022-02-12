@@ -25,6 +25,17 @@ defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
  */
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
 
+
+/*
+ | --------------------------------------------------------------------------
+ | Dynamic Base URL
+ | --------------------------------------------------------------------------
+ |
+ | Dynamically sets the Base URL based on the URL request
+ */
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://'.$_SERVER['HTTP_HOST'] : 'http://'.$_SERVER['HTTP_HOST'];
+defined('BASE') || define('BASE',$protocol);
+
 /*
  |--------------------------------------------------------------------------
  | Timing Constants
