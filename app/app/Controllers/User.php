@@ -49,8 +49,8 @@ class User extends BaseController{
                 
                 //'specs' => $this->userModel->join('especialidades AS special', 'special.usuario_id = usuarios.id'),
                 'specs' => $this->especialidadesModel->select('especialidades.nome'),
-                'specs' => $this->especialidadesModel->from('especialidades AS special'),
-                'specs' => $this->especialidadesModel->join('usuarios', 'usuarios.id = especialidades.usuario_id'),
+                //'specs' => $this->especialidadesModel->from('especialidades AS special'),
+                //'specs' => $this->especialidadesModel->join('usuarios', 'usuarios.id = especialidades.usuario_id'),
                 //'specs' => $this->especialidadesModel->where('usuarios.deleted_at == NULL'),
                 //'specs' => $this->especialidadesModel->get(),
 
@@ -68,7 +68,7 @@ class User extends BaseController{
            
             
         }
-        //echo $this->userModel->getNumRows();
+        
         echo view('templates/footer', $data);
     }
 
@@ -94,17 +94,7 @@ class User extends BaseController{
 
     public function store($page = ''){
         $data['title'] = $page;
-
-        //$queryGlobal = ;
-
-        //$specSelection = $this->request->getVar('especialidades');
-        //$id = $this->request->getVar('id');
-
-        //$especialidades = $this->request->getPost('especialidades');
-
-        //echo implode("<br><br>", $especialidades).'<br><br>';
-
-        
+      
         /*
         foreach ($this->request->getPost('especialidades') as $especs)
         {
