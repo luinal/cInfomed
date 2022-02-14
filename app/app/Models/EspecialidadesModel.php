@@ -15,7 +15,7 @@ class EspecialidadesModel extends Model
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'seletor_user',
+        'usuario_id',
         'nome'
     ];
 
