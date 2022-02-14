@@ -1,5 +1,5 @@
 CREATE TABLE especialidades (
-  id int(11) NOT NULL PRIMARY KEY,
+  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   usuario_id int(11) NOT NULL,
   nome text COLLATE utf8_unicode_ci NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp(),
